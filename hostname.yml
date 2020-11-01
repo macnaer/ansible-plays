@@ -1,0 +1,20 @@
+---
+  - hosts: all
+    become: yes
+    tasks:
+      - name: get server hostname
+        command: hostname
+        register: command_output
+      - debug: msg="{{command_output.stdout}}"
+
+      - name: OS-Release
+        command: cat /etc/os-release
+        register: command_release
+      - debug: msg="{{command_release.stdout_lines[1]}}"
+
+
+      - name: Getting ip address for Debian family
+        command: ifconfig
+        register: command_ifconfig
+      - debug: msg="{{command_ifconfig.stdout_lines[1]}}"
+

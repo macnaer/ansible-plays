@@ -1,0 +1,22 @@
+---
+  - hosts: all
+    become: yes
+    tasks:
+      - name: Copy docker script for Ubuntu 18.04
+        copy:
+          src: /home/master/ansible/playbooks/files/instll_ci_cd_ubuntu.sh
+          dest: /home/instll_ci_cd_ubuntu.sh
+          mode: u=rwx,g=rx,o=rx
+        when: ansible_os_family == 'Debian'
+
+      - name: Run installation script
+        shell: /home/instll_ci_cd_ubuntu.sh
+        when: ansible_os_family == "Debian"
+
+      - name: Delete installation script
+        file:
+          path: /home/instll_ci_cd_ubuntu.sh
+          state: absent
+        when: ansible_os_family == "Debian"
+
+

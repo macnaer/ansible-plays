@@ -1,0 +1,31 @@
+---
+  - hosts: all
+    become: yes
+    tasks:
+      - name: Install apps Debian family
+        apt:
+          name: '{{ item }}'
+          state: present
+          update_cache: true
+
+        with_items:
+          - mc
+          - vim
+          - nano
+          - zip
+        when: ansible_os_family == 'Debian'
+
+
+      - name: Install apps RedHat family
+        yum:
+          name: '{{ item }}'
+          state: present
+          update_cache: true
+
+        with_items:
+          - mc
+          - vim
+          - nano
+          - zip
+        when: ansible_os_family == 'RedHat'
+
