@@ -13,7 +13,7 @@
       - debug: msg="{{command_release.stdout_lines[1]}}"
 
 
-      - name: Getting ip address for Debian family
+      - name: Getting ip address 
         command: ifconfig
         register: command_ifconfig
       - debug: msg="{{command_ifconfig.stdout_lines[1]}}"

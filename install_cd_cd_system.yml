@@ -20,3 +20,24 @@
         when: ansible_os_family == "Debian"
 
 
+
+
+      - name: Copy docker script for RedHat
+        copy:
+          src: /home/master/ansible/playbooks/files/instll_ci_cd_redhat.sh
+          dest: /home/instll_ci_cd_redhat.sh
+          mode: u=rwx,g=rx,o=rx
+        when: ansible_os_family == 'RedHat'
+
+      - name: Run installation script
+        shell: /home/instll_ci_cd_redhat.sh
+        when: ansible_os_family == "RedHat"
+
+      - name: Delete installation script
+        file:
+          path: /home/instll_ci_cd_redhat.sh
+          state: absent
+        when: ansible_os_family == "RedHat"
+
+
+
