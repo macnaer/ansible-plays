@@ -18,3 +18,12 @@
     win_chocolatey:
       name: googlechrome
       state: present
+  - name: Install adobereader
+    win_chocolatey:
+      name: adobereader
+      state: present
+      
+   - name: Install winrar
+    win_chocolatey:
+      name: winrar
+      state: present
